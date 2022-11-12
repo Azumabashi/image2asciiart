@@ -51,3 +51,7 @@ if isMainModule:
   if not fileExists(filename):
     echo "file " & filename & " does not exist."
     exit(1)
+
+  var image = readImage(filename)
+  if height > 0 and width > 0:
+    image = image.resize(width, height)
