@@ -48,3 +48,6 @@ if isMainModule:
   if filename.len == 0:
     echo "filename should be specified."
     exit(1)
+  if not fileExists(filename):
+    echo "file " & filename & " does not exist."
+    exit(1)
