@@ -4,10 +4,9 @@ import math
 import parseopt
 import strutils
 import os
-import algorithm
 
 const
-  chars = ['@', 'W', '#', 'R', 'E', '8', 'x', 's', 'i', ';', ',', '.', ' '].reversed
+  chars = ['@', 'W', '#', 'R', 'E', '8', 'x', 's', 'i', ';', ',', '.', ' ']
 
 proc getGrayscalePixel(pixel: ColorRGBX): int =
   result = int(floor((int(pixel.r) + int(pixel.g) + int(pixel.b)) / 3))
