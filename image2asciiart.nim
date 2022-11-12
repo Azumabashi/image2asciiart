@@ -15,4 +15,9 @@ proc image2asciiart(filename: string): seq[string] =
   let
     image = readImage(filename)
     grayscalePixel = image.data.map(getGrayscalePixel)
+    asciiArt = grayscalePixel.map(getChar)
+  for i in 0..<asciiArt.len:
+    stdout.write asciiArt[i]
+    if i mod image.width == image.width-1:
+      echo ""
   
