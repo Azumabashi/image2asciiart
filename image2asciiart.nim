@@ -10,7 +10,7 @@ const
   chars = ['@', 'W', '#', 'R', 'E', '8', 'x', 's', 'i', ';', ',', '.', ' '].reversed
 
 proc getGrayscalePixel(pixel: ColorRGBX): int =
-  result = int(floor(int(pixel.r + pixel.g + pixel.b) / 3))
+  result = int(floor((int(pixel.r) + int(pixel.g) + int(pixel.b)) / 3))
 
 proc getChar(pixel: int): char =
   let width = int(floor(256 / chars.len)) + 1  # +1 to avoid index error
