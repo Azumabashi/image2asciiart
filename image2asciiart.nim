@@ -3,6 +3,7 @@ import sequtils
 import math
 import parseopt
 import strutils
+import os
 
 const
   chars = ['@', 'W', '#', 'R', 'E', '8', 'x', 's', 'i', ';', ',', '.', ' ']
@@ -46,10 +47,10 @@ if isMainModule:
 
   if filename.len == 0:
     echo "filename should be specified."
-    exit(1)
+    quit(1)
   if not fileExists(filename):
     echo "file " & filename & " does not exist."
-    exit(1)
+    quit(1)
 
   var image = readImage(filename)
   if height > 0 and width > 0:
