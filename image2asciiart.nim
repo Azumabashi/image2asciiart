@@ -7,6 +7,10 @@ const
 proc getGrayscalePixel(pixel: ColorRGBX): int =
   result = (pixel.r + pixel.g + pixel.b) / 3
 
+proc getChar(pixel: int): char =
+  let width = 256 / chars.len + 1  # +1 to avoid index error
+  result = chars[pixel / width]
+
 proc image2asciiart(filename: string): seq[string] =
   let
     image = readImage(filename)
