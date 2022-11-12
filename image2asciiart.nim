@@ -1,6 +1,8 @@
 import pixie
 import sequtils
 import math
+import parseopt
+import strutils
 
 const
   chars = ['@', 'W', '#', 'R', 'E', '8', 'x', 's', 'i', ';', ',', '.', ' ']
@@ -19,3 +21,24 @@ proc image2asciiart*(filename: string, width: int, height: int): seq[char] =
     asciiArt = grayscalePixel.map(getChar)
   return asciiArt
 
+if isMainModule:
+  var
+    p = initOptParser()
+    filename: string
+    width = -1
+    height = -1
+  while true:
+    p.next()
+    case p.kind
+    of cmdEnd:
+      break
+    of cmdShortOption, cmdLongOption:
+      case p.key
+      of "w", "width":
+        width = p.val.parseInt
+      of "h", "height":
+        height = p.val.parseInt
+      else:
+        echo "unknown key " & p.key
+    of cmdArgument:
+      filename = p.key
