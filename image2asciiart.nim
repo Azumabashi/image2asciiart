@@ -27,6 +27,8 @@ if isMainModule:
     filename: string
     width = -1
     height = -1
+
+  # parse options
   while true:
     p.next()
     case p.kind
@@ -42,3 +44,4 @@ if isMainModule:
         echo "unknown key " & p.key
     of cmdArgument:
       filename = p.key
+  
