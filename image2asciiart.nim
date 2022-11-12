@@ -44,4 +44,7 @@ if isMainModule:
         echo "unknown key " & p.key
     of cmdArgument:
       filename = p.key
-  
+
+  if filename.len == 0:
+    echo "filename should be specified."
+    exit(1)
