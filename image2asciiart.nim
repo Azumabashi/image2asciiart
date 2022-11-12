@@ -54,3 +54,9 @@ if isMainModule:
   var image = readImage(filename)
   if height > 0 and width > 0:
     image = image.resize(width, height)
+
+  let asciiArt = image.image2asciiart
+  for i in 0..<asciiArt:
+    stdout.write asciiArt[i]
+    if i mod image.width == image.width - 1:
+      echo ""  # print \n
