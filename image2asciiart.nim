@@ -4,20 +4,22 @@ import math
 import parseopt
 import strutils
 import os
+import algorithm
 
 const
-  chars = ['@', 'W', '#', 'R', 'E', '8', 'x', 's', 'i', ';', ',', '.', ' ']
+  chars = ['@', 'W', '#', 'R', 'E', '8', 'x', 's', 'i', ';', ',', '.', ' '].reversed
 
 proc getGrayscalePixel(pixel: ColorRGBX): int =
-  result = int(int(pixel.r + pixel.g + pixel.b) / 3)
+  result = int(floor(int(pixel.r + pixel.g + pixel.b) / 3))
 
 proc getChar(pixel: int): char =
-  let width = int(256 / chars.len) + 1  # +1 to avoid index error
+  let width = int(floor(256 / chars.len)) + 1  # +1 to avoid index error
   result = chars[int(floor(pixel / width))]
 
 proc image2asciiart*(image: Image): seq[char] =
   let
     grayscalePixel = image.data.map(getGrayscalePixel)
+  let
     asciiArt = grayscalePixel.map(getChar)
   return asciiArt
 
@@ -57,7 +59,7 @@ if isMainModule:
     image = image.resize(width, height)
 
   let asciiArt = image.image2asciiart
-  for i in 0..<asciiArt:
+  for i in 0..<asciiArt.len:
     stdout.write asciiArt[i]
     if i mod image.width == image.width - 1:
       echo ""  # print \n
