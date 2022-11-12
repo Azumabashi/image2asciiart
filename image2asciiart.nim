@@ -17,8 +17,5 @@ proc image2asciiart*(filename: string, width: int, height: int): seq[string] =
     image = readImage(filename).resize(width, height)
     grayscalePixel = image.data.map(getGrayscalePixel)
     asciiArt = grayscalePixel.map(getChar)
-  for i in 0..<asciiArt.len:
-    stdout.write asciiArt[i]
-    if i mod image.width == image.width-1:
-      echo ""
+  return asciiArt
 
